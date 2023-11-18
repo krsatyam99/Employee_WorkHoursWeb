@@ -51,9 +51,13 @@ Task 3: Create a report that displays an employee's first punch and last punch b
 - Openpyxl
 
 ## Additional Features
+- Daily attendance reports for individual employees are available.
+ [attendance_data (6).xlsx](https://github.com/krsatyam99/Employee_WorkHoursWeb/files/13400397/attendance_data.6.xlsx)
 
 - Users can access comprehensive attendance reports for each employee.
-- Daily attendance reports for individual employees are available.
+
+  [attendance_report (2).xlsx](https://github.com/krsatyam99/Employee_WorkHoursWeb/files/13400405/attendance_report.2.xlsx)
+
 ## Task 1: Employee Details Management Interface
 
 ![Screenshot (12)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/8ed390f1-7601-4344-a158-fcf227edd220)
