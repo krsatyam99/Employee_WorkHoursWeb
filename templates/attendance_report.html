@@ -130,7 +130,7 @@
                         </div>
                         <div class="modal-body">
                            
-                            <form action="#" method="post">
+                            <form action="{% url 'save_attendance'  %}" method="post">
                                 {% csrf_token %}
                                
                                 <label for="first_punch_date">In Time :</label>
