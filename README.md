@@ -1,6 +1,9 @@
 # Employee_WorkHoursWeb
 
 This web application is designed to efficiently manage employee information, facilitate the addition of new employees, and streamline attendance tracking.
+
+- [Demo Link](#demo-link)
+- [LinkedIn](https://www.linkedin.com/in/kumar-satyam-769340243/)
 ## Table of Contents
 
 1. [Employee_WorkHoursWeb](#employee_workhoursweb)
@@ -15,7 +18,9 @@ This web application is designed to efficiently manage employee information, fac
     - [Task 1: Employee Details Management Interface](#task-1-employee-details-management-interface-1)
     - [Task 2: Employee Attendance Tracking](#task-2-employee-attendance-tracking-1)
     - [Task 3: Real-time Attendance Report](#task-3-real-time-attendance-report-1)
-    - [Diagram for Celery Integration and  Admin panel](#diagram-for-celery-integration-and-admin panel)
+    -  [Diagram for Celery Integration and Admin Panel](#diagram-for-celery-integration-and-admin-panel)
+
+
 
 ## Problem Statements
 
