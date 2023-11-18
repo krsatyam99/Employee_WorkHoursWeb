@@ -17,7 +17,8 @@ urlpatterns = [
     path("update/<int:id>", views.update, name='update'),
     path("attend/",views.attendance_report, name ="attend"),
     path("excel/",views.generate_and_download_excel, name ="excel"),
-    path("data/",views.get_attendance_data, name='data')
+    path("data/",views.get_attendance_data, name='data'),
+    path('save_attendance/', views.save_attendance, name='save_attendance')
 
 
 
