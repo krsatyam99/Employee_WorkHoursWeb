@@ -49,6 +49,14 @@ Task 3: Create a report that displays an employee's first punch and last punch b
 - Redis
 - Eventlet
 - Openpyxl
+## Setting up celery
+- Adding celery and redis configuration in settings.py
+- Initating the celery worker   ![Screenshot (6)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/85167560-2003-4774-b2bc-d8344eb3213f)
+- - command :  celery -A zkteco.celery worker -l info 
+
+- Celery beat ![Screenshot (8)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/7831c353-ce2a-4391-b3db-780a904e806c)
+- - command :celery -A zkteco beat -l info
+  - python amange.py migrate
 
 ## Additional Features
 - Daily attendance reports for individual employees are available.
