@@ -3,8 +3,10 @@
 {% block title %}Attendance Data{% endblock %}
 
 {% block extra_head %}
+    <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+    <!-- Additional styles specific to the attendance page -->
     <style>
         body {
             display: flex;
@@ -19,7 +21,7 @@
 
         .card {
             width: 50%;
-            max-width: 400px; 
+            max-width: 400px; /* Adjust the maximum width as needed */
         }
 
         .card-header {
@@ -80,10 +82,16 @@
                 
             </table>
             <form action="{% url 'excel' %}" method="get">
-                <button type="submit">Generate Excel Report</button>
+                <button type="submit">Generate Excel Report for all</button>
+            </form><br><br>
+            <form action="{% url 'data' %}" method="get">
+                <button type="submit">Today report</button>
             </form>
             <br>
             <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#attendanceModal">
+                Add Attendance
+            </button>
 
             <h3>Detailed Attendance Data</h3>
             <table class="table table-bordered">
@@ -110,6 +118,46 @@
                     {% endfor %}
                 </tbody>
             </table>
+            
+            <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="attendanceModalLabel">Add Attendance</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           
+                            <form action="#" method="post">
+                                {% csrf_token %}
+                               
+                                <label for="first_punch_date">In Time :</label>
+                                <input type="time" name="first_punch_date" class="form-control"  required>
+                                <br>
+                                
+                                <label for="last_punch_time">Out Time:</label>
+                                <input type="time" name="last_punch_time" class="form-control"  required>
+                                <br>
+                               
+                                
+                                <label for="leaves_in_the_month">Leaves:</label>
+                                <input type="text" name="leaves_in_the_month" class="form-control" required>
+                                <br>
+                                
+
+                             
+
+
+                                <button type="submit" class="btn btn-primary">Save Attendance</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock %}
