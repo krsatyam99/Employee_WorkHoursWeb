@@ -69,28 +69,27 @@ class AttendanceTransaction(models.Model):
     total_hour_working = models.DurationField(editable=False)
 
     def save(self, *args, **kwargs):
-        # Set first_punch_date to today's date if not already set
+        # Seting first_punch_date to today's date if not already set
         if not self.first_punch_date:
             self.first_punch_date = date.today()
 
-        # Check if first_punch_time is being set for the first time on the given day
+        # Checking if first_punch_time is being set for the first time on the given day
         existing_first_punch = AttendanceTransaction.objects.filter(
             employee=self.employee,
             first_punch_date=self.first_punch_date
-        ).exclude(pk=self.pk)  # Exclude the current instance if updating
+        ).exclude(pk=self.pk) 
 
         if existing_first_punch.exists():
-            # If a record already exists for the same day, raise an exception or handle accordingly
+            # If a record already exists for the same day, an exception will be raised 
             raise ValueError('First punch already registered for the day.')
         
-        # Check if last_punch_time is being set for the first time on the given day
+        # Checking if last_punch_time is being set for the first time on the given day
         existing_last_punch = AttendanceTransaction.objects.filter(
             employee=self.employee,
             first_punch_date=self.first_punch_date,
         ).exclude(pk=self.pk)  # Exclude the current instance if updating
 
         if existing_last_punch.exists():
-            # If a record already exists for the same day, raise an exception or handle accordingly
             raise ValueError('Last punch already registered for the day.')
         time_difference = timedelta(hours=self.last_punch_time.hour, minutes=self.last_punch_time.minute) - timedelta(hours=self.first_punch_time.hour, minutes=self.first_punch_time.minute)
         self.total_hour_working = time_difference
