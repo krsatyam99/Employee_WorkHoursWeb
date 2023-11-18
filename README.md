@@ -26,8 +26,8 @@ Task 2: Develop an interface to add employee attendance transaction like Punch t
 Task 3: Create a report that displays an employee's first punch and last punch based on real-time attendance transactions. Utilize a Celery task to calculate attendance.
 
 ## Sequence Diagram for Web App
+![celery](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/0596bca1-2913-4e92-b6d4-9c03c9f93bd9)
 
-![Sequence Diagram](link/to/your/sequence-diagram.png)
 
 ## Prerequisites
 
@@ -51,18 +51,38 @@ Task 3: Create a report that displays an employee's first punch and last punch b
 - Daily attendance reports for individual employees are available.
 ## Task 1: Employee Details Management Interface
 
+![Screenshot (12)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/8ed390f1-7601-4344-a158-fcf227edd220)
+
+![Screenshot (13)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/9cc46523-e2ba-44c0-a3d3-36950fcf193b)
+
+
+## Task 2:Adding attendance
+
+![Screenshot (15)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/44761e1e-e6df-4f1e-b03f-ad1585f753e2)
+
+## Task 3: Employee Attendance Tracking
+![Screenshot (14)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/9b8f2b01-d845-4a67-84d6-960604d5fa50)
+
 ...
 
-## Task 2: Employee Attendance Tracking
+
+
+
+## Diagram for Celery Integration and  Admin panel
+### Admin Panel 
+![Screenshot (16)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/4f8fe88e-f14a-44eb-a7eb-37375a2ce87c)
+
+![Screenshot (17)](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/1baf3c15-8238-4d79-8ca3-a48c0a7728cb)
+
+ ### General  Architecture
+
+
+![iiii](https://github.com/krsatyam99/Employee_WorkHoursWeb/assets/103446420/1e7dc066-773d-4ab5-87d7-a5456d182157)
+
+
 
 ...
 
-## Task 3: Real-time Attendance Report
 
-...
-
-## Diagram for Celery Integration and Workflow
-
-![Celery Integration Diagram](link/to/your/celery-diagram.png)
 
 
