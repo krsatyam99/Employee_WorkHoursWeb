@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add Employee
+{% endblock %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #007bff;">Add Employee</h2>
+        <form method="post" action="{% url 'add_employee' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" class="form-control" required>
+            <br>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" class="form-control" required>
+            <br>
+
+            <label for="hire_date">Hire Date:</label>
+            <input type="date" name="hire_date" class="form-control" required>
+            <br>
+
+            <label for="designation">Designation:</label>
+            <select name="designation">
+                {% for code, label in designation %}
+                    <option value="{{ code }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            
+            <label for="department">Department:</label>
+            <select name="department">
+                {% for code, label in department %}
+                    <option value="{{ code }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            
+
+            <label for="profile_pic">Profile Picture:</label>
+            <input type="file" name="profile_pic" accept="image/*" class="form-control-file">
+            <br>
+
+            <label for="residential_proof">Residential Proof:</label>
+            <input type="file" name="residential_proof" class="form-control-file">
+            <br>
+
+            <label for="thumbprint">Thumbprint:</label>
+            <input type="file" name="thumbprint" class="form-control-file">
+            <br>
+
+            <label for="mobile_no">Mobile Number:</label>
+            <input type="tel" name="mobile_no" class="form-control" required>
+            <br>
+
+            <label for="address">Address:</label>
+            <textarea name="address" rows="4" class="form-control" required></textarea>
+            <br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" required>
+            <br>
+
+            <label for="nationality">Nationality:</label>
+            <input type="text" name="nationality" class="form-control" required>
+            <br>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance Data{% endblock %}
+
+{% block extra_head %}
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Additional styles specific to the attendance page -->
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h2{
+            text-align: center;
+        }
+
+        .card {
+            width: 50%;
+            max-width: 400px; /* Adjust the maximum width as needed */
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .table-container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h2>Attendance of each employee</h2>
+        </div>
+        <div class="table-container">
+           
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Full Name</th>
+                        <th>Employee Code</th>
+                        <th>Total Occurrences</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee_id, data in employee_data.items %}
+                        <tr>
+                            <td>{{ employee_id }}</td>
+                            <td>{{ data.Full_Name }}</td>
+                            <td>{{ data.Employee_Code }}</td>
+                            <td>{{ data.total_occurrences }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+            <form action="{% url 'excel' %}" method="get">
+                <button type="submit">Generate Excel Report</button>
+            </form>
+            <br>
+            <br>
+
+            <h3>Detailed Attendance Data</h3>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th> Date</th>
+                        <th> Full name</th>
+                       <th>In time</th>
+                       <th>Out time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attendance_entry in all_attendance_data %}
+                        <tr>
+                            <td>{{ attendance_entry.employee.Employee_Code }}</td>
+                            <td>{{ attendance_entry.first_punch_date }}</td>
+
+                            <td>{{ attendance_entry.employee.Full_Name }}</td>
+                            <td>{{ attendance_entry.first_punch_time }}</td>
+                            <td>{{ attendance_entry.last_punch_time }}</td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

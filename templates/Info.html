@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}Employee Details{% endblock %}
+
+{% block content %}
+
+    <style>
+        /* Additional styles specific to this template */
+
+        /* Center the card */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Adjust the height as needed */
+        }
+
+        /* Card styles */
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Icon button styles */
+        .icon-btn {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+        }
+    </style>
+
+    <div class="card-container">
+        {% csrf_token %}
+        <div class="card">
+            <h2>Employee Details</h2>
+            
+            <!-- Table to display employee details -->
+            <table>
+                <thead>
+                    <tr><th>Profile Pic</th>
+
+                        <th>Employee ID</th>
+                        <th>Hire Date</th>
+                        <th>Full Name</th>
+                        <th>Designation</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in info %}
+                        <tr>
+                            <td>pic</td>
+                            <td>{{ employee.Employee_Code }}</td>
+                            <td>{{ employee.Hire_Date }}</td>
+                            <td>{{ employee.Full_Name }}</td>
+                            <td>{{ employee.Designation }}</td>
+                          <td>active</td>
+                            <td>
+                               
+                                <!-- <a href="#">
+                                    <i class="fa fa-pencil"></i>
+                                </a> -->
+                                <a href="#" class="edit-employee" data-toggle="modal" data-target="#editEmployeeModal{{ employee.id }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+
+                               
+                                <a href="{% url 'del_employee' id=employee.id %}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   <!-- Add this inside the loop where you display employee details -->
+<a href="#" class="edit-employee" data-toggle="modal" data-target="#editEmployeeModal{{ employee.id }}">
+    <i class="fa fa-pencil"></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="editEmployeeModal{{ employee.id }}" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editEmployeeModalLabel">Edit Employee Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form fields go here -->
+        <form id="editEmployeeForm{{ employee.id }}" method="post" action="{% url 'update' id %}">
+            {% csrf_token %}
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" class="form-control" value="{{ employee.First_Name }}" required>
+            <br>
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" class="form-control" value="{{ employee.Last_Name }}" required>
+            <br>
+
+            <!-- Add other fields as needed -->
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
