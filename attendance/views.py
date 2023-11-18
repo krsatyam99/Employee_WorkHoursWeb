@@ -8,6 +8,11 @@ from datetime import date
 
 
 
+from django.shortcuts import render
+from .models import employee_details
+
+
+
 import openpyxl
 from openpyxl.styles import Alignment, Font, PatternFill
 
@@ -35,10 +40,6 @@ def employee_info(request,id =None):
         return render(request,'update.html',context,)
 
 
-# views.py
-
-from django.shortcuts import render
-from .models import employee_details
 
 def create(request):
     context = {}
@@ -282,3 +283,30 @@ def get_attendance_data(request):
     wb.save(response)
 
     return response
+
+
+
+
+
+
+def save_attendance(request):
+    if request.method == 'POST':
+       
+        leaves = request.POST.get('leaves')  # Assuming you have a field named 'employee_id' in your form
+        # first_punch_date = parse_date(request.POST.get('first_punch_date'))
+        first_punch_time = parse_time(request.POST.get('first_punch_time'))
+        last_punch_time = parse_time(request.POST.get('last_punch_time'))
+
+        # Create and save the AttendanceTransaction instance
+        try:
+            attendance = AttendanceTransaction.objects.create(
+                # employee_id=employee_id,
+                first_punch_time=first_punch_time,
+                last_punch_time=last_punch_time,
+                leaves_in_the_month=leaves
+            )
+            return HttpResponse('Attendance saved successfully!')
+        except Exception as e:
+            return HttpResponse(f'Error saving attendance: {e}')
+
+    return HttpResponse('Invalid request method')
